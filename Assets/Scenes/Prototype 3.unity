@@ -125,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f19c9246d91b3d5488c65e0539de4da2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f19c9246d91b3d5488c65e0539de4da2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03bbb71c194bad742addeccdeb717815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 6250496617295105646, guid: cf192ffb9712a894ca666eac576ac6c9,
+  obstacle: {fileID: 6403142283732763083, guid: 2e9cf35a333180a4fbb108cc9cac3fc9,
     type: 3}
 --- !u!1 &534669902
 GameObject:
@@ -504,10 +504,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 835818919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d3cad672f3639a4d96adf1f2cf1a52b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b10755bc310f444196dd91a5d2db5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 10
 --- !u!1 &2014335011
 GameObject:
   m_ObjectHideFlags: 0

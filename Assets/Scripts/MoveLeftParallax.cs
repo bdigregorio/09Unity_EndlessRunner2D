@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveLeft : MonoBehaviour
+public class MoveLeftParallax : MonoBehaviour
 {
-    public float speed = 20f;
+    public float speed = 10f;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         transform.Translate(Vector3.left * speed * Time.deltaTime);
     }

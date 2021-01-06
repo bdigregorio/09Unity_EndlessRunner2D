@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour {
     public GameObject obstacle;
-
     private float minSpawnInterval = 0.5f;
     private float maxSpawnInterval = 2.75f;
     private float startDelay = 1;
