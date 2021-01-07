@@ -5,21 +5,26 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRigidbody;
+    private Animator playerAnimator;
     
     public float jumpForce;
     public float gravityModifier;
     public bool isOnGround = true;
     public bool gameOver;
 
-    // Start is called before the first frame update
     private void Start() {
+        // initialize player components
         playerRigidbody = GetComponent<Rigidbody>();
+        playerAnimator = GetComponent<Animator>();
+
+        // initialize object physics
         Physics.gravity *= gravityModifier;
     }
 
-    // Update is called once per frame
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround) {
+            // When <spacebar> is pressed, player jumps
+            playerAnimator.SetTrigger("Jump_trig");
             playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
         } 
@@ -27,8 +32,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.CompareTag("Ground")) {
+            // when player falls to ground
             isOnGround = true;
         } else if (collision.gameObject.CompareTag("Obstacle")) {
+            // when player collides with obstacle, game is over
             gameOver = true;
             Debug.Log("Game over!");
         }
