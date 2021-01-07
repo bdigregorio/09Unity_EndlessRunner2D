@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class MoveLeftParallax : MonoBehaviour
 {
-    public float speed = 15f;
+    public float speed = 17f;
+    private PlayerController playerController;
 
-    // Update is called once per frame
-    private void Update()
-    {
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
+    private void Start() {
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+    }
+
+    private void Update() {
+        if (playerController.gameOver == false) {
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+        }
     }
 }
