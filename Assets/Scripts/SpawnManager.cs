@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour {
     public GameObject obstacle;
-    private float minSpawnInterval = 0.65f;
-    private float maxSpawnInterval = 2.25f;
+    private PlayerController playerController;
+    private float minSpawnInterval = 0.5f;
+    private float maxSpawnInterval = 2f;
     private float startDelay = 1;
     private float nextSpawnTime = 0;
-    private Vector3 spawnPosition = new Vector3(35, 0, 0);
+    private Vector3 spawnPosition = new Vector3(38, 0, 0);
 
     private void Start()    {
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        // schedule initial obstacle spawn
         Invoke(nameof(SpawnObstacle), startDelay);
     }
 
     private void SpawnObstacle() {
-        Instantiate(obstacle, spawnPosition, obstacle.transform.rotation);
+        if (playerController.gameOver == false) {
+            // spawn an obstacle
+            Instantiate(obstacle, spawnPosition, obstacle.transform.rotation);
 
-        nextSpawnTime = Random.Range(minSpawnInterval, maxSpawnInterval);
-        Invoke(nameof(SpawnObstacle), nextSpawnTime);
+            // schedule next obstacle spawn
+            nextSpawnTime = Random.Range(minSpawnInterval, maxSpawnInterval);
+            Invoke(nameof(SpawnObstacle), nextSpawnTime);
+        }
     }
 }

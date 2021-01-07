@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveLeftParallax : MonoBehaviour
 {
-    public float speed = 15f;
+    public float speed = 17f;
     private PlayerController playerController;
 
     private void Start() {
