@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround) {
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver) {
             // When <spacebar> is pressed, player jumps
             playerAnimator.SetTrigger("Jump_trig");
             playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
