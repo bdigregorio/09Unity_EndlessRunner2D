@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public bool gameOver;
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
-    private float sfxVolume = 0.35f;
+    private float sfxVolume = 0.25f;
     public AudioClip jumpSound;
     public AudioClip crashSound;
 
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("Ground")) {
+        if (collision.gameObject.CompareTag("Ground") && !gameOver) {
             // when player falls to ground
             isOnGround = true;
             dirtParticle.Play();
