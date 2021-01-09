@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9327320296590957, guid: 1db47c5ef25154fb1806822c25335042, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.48
+      value: -3.05
       objectReference: {fileID: 0}
     - target: {fileID: 9327320296590957, guid: 1db47c5ef25154fb1806822c25335042, type: 3}
       propertyPath: m_LocalPosition.y
@@ -875,7 +875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOver: 0
-  floatForce: 10
+  floatForce: 1
   explosionParticle: {fileID: 1171260740}
   fireworksParticle: {fileID: 66121944}
   moneySound: {fileID: 8300000, guid: af9f934eb4288464eb120a5857921cc3, type: 3}
