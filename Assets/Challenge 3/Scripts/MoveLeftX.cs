@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MoveLeftX : MonoBehaviour
 {
-    public float speed;
+    private float foregroundSpeed = 10;
+    private float backgroundSpeed = 8;
     private PlayerControllerX playerControllerScript;
     private float leftBound = -10;
 
@@ -20,6 +21,13 @@ public class MoveLeftX : MonoBehaviour
         // If game is not over, move to the left
         if (!playerControllerScript.gameOver)
         {
+            float speed;
+            if (gameObject.CompareTag("Background")) {
+                speed = backgroundSpeed;
+            } else {
+                speed = foregroundSpeed;
+            }
+
             transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
         }
 

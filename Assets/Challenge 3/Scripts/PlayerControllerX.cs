@@ -6,16 +6,20 @@ public class PlayerControllerX : MonoBehaviour
 {
     public bool gameOver;
 
-   private float floatForce = 0.6f;
+    private float floatForce = 0.6f;
+    private float bounceForce = 675;
+    private float cielingForce = 4;
     private float gravityModifier = 1.5f;
     private Rigidbody playerRigidbody;
 
     public ParticleSystem explosionParticle;
     public ParticleSystem fireworksParticle;
 
+    private float sfxVolume = 0.5f;
     private AudioSource playerAudio;
     public AudioClip moneySound;
     public AudioClip explodeSound;
+    public AudioClip bounceSound;
 
     private float yMaxBounds = 14f;
 
@@ -25,9 +29,6 @@ public class PlayerControllerX : MonoBehaviour
         Physics.gravity *= gravityModifier;
         playerAudio = GetComponent<AudioSource>();
         playerRigidbody = GetComponent<Rigidbody>();
-
-        // Apply a small upward force at the start of the game
-        playerRigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
 
     }
 
@@ -43,6 +44,7 @@ public class PlayerControllerX : MonoBehaviour
         // Prevent player from getting too high
         if (playerPosition.y > yMaxBounds) {
             transform.position = new Vector3(playerPosition.x, yMaxBounds, playerPosition.z);
+            playerRigidbody.AddForce(Vector3.down * cielingForce, ForceMode.Impulse);
         }     
     }
 
@@ -52,21 +54,26 @@ public class PlayerControllerX : MonoBehaviour
         if (other.gameObject.CompareTag("Bomb"))
         {
             explosionParticle.Play();
-            playerAudio.PlayOneShot(explodeSound, 1.0f);
+            playerAudio.PlayOneShot(explodeSound, sfxVolume);
             gameOver = true;
             Debug.Log("Game Over!");
             Destroy(other.gameObject);
         } 
 
-        // if player collides with money, fireworks
+        // if player collides with money, do fireworks
         else if (other.gameObject.CompareTag("Money"))
         {
             fireworksParticle.Play();
-            playerAudio.PlayOneShot(moneySound, 1.0f);
+            playerAudio.PlayOneShot(moneySound, sfxVolume);
             Destroy(other.gameObject);
 
         }
 
+        // if player collides with ground, do bounce
+        else if (other.gameObject.CompareTag("Ground")) {
+            playerAudio.PlayOneShot(bounceSound, sfxVolume);
+            playerRigidbody.AddForce(Vector3.up * bounceForce);
+        }
     }
 
 }
